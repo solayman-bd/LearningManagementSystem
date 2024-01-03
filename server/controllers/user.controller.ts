@@ -7,6 +7,7 @@ import jwt, { Secret } from "jsonwebtoken";
 import ejs from "ejs";
 import path from "path";
 import sendMail from "../utils/sendMail";
+import { sendToken } from "../utils/jwt";
 interface IRegistrationBody {
   name: string;
   email: string;
@@ -93,7 +94,7 @@ export const activateUser = catchAsyncError(
         activationToken,
         process.env.ACTIVATION_SECRET as string
       ) as { user: IUser; activationCode: string };
-      if (newUser.activationCode!==activationCode) {
+      if (newUser.activationCode !== activationCode) {
         return next(new ErrorHandler("Invalid Activation Code!", 400));
       }
       const { name, email, password } = newUser.user;
@@ -108,8 +109,53 @@ export const activateUser = catchAsyncError(
       });
 
       res.status(201).json({
-        success:true
-      })
+        success: true,
+      });
+    } catch (err: any) {
+      return next(new ErrorHandler(err.message, 400));
+    }
+  }
+);
+//login user
+interface ILoginRequest {
+  email: string;
+  password: string;
+}
+
+export const loginUser = catchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { email, password } = req.body as ILoginRequest;
+
+      if (!email || !password) {
+        return next(new ErrorHandler("Please enter email and password!", 400));
+      }
+      const user = await UserModel.findOne({ email }).select("+password");
+      if (!user) {
+        return next(new ErrorHandler("Invalid email!", 400));
+      }
+      const isPasswordMatched = await user.comparePassword(password);
+      if (!isPasswordMatched) {
+        return next(new ErrorHandler("Invalid password!", 400));
+      }
+      sendToken(user, 200, res);
+    } catch (err: any) {
+      return next(new ErrorHandler(err.message, 400));
+    }
+  }
+);
+
+//logout user
+export const logoutUser = catchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      res.cookie("accessToken", "", { maxAge: 1 });
+      res.cookie("refreshToken", "", { maxAge: 1 });
+
+      res.status(200).json({
+        success: true,
+        message: "Logged out successfully..",
+      });
     } catch (err: any) {
       return next(new ErrorHandler(err.message, 400));
     }
