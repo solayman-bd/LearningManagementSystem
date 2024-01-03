@@ -1,0 +1,290 @@
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+lib/
+bin/
+*.rb
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Yarn
+.yarn/
+.yarnrc
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# Visual Studio Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Jest coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Parcel
+.cache/
+dist/
+
+# Next.js
+.next/
+out/
+
+# Serverless
+.serverless/
+
+# AWS Amplify
+.amplify/
+
+# Local .env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ESLint
+.eslintcache
+
+# Log files
+*.log
+
+# npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# SASS
+.sass-cache/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# .vscode settings file
+.vscode/settings.json
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# OS generated files
+ehthumbs.db
+Thumbs.db
+
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Pytest
+pytest_cache/
+
+# Environments
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Docker Compose
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Tye
+.tye/
+
+# macOS
+.DS_Store
+
+# Flutter
+bin/
+build/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Flutter.xcconfig
+ios/Flutter/App.framework/
+ios/Flutter/App.podspec
+ios/Flutter/App.xcconfig
+GeneratedPluginRegistrant.*
+
+# IntelliJ
+.idea/
+
+# User-specific configs
+*.suo
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+*.log
+*.pot
+
+# Node
+logs
+*.log
+
+# Yarn
+.yarn-integrity
+.yarnrc
+.yarn
+.pnp.*
+.pnp.js
+
+# Parcel
+dist
+
+# Meteor
+.local
+.meteor/local
+/.meteor/
+
+# Testing
+coverage
+
+# Output directories
+node_modules/
+bower_components/
+dist/
+lib/
+vendor/
+
+# IDE
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# User-specific files
+Desktop.ini
+
+# Compiled files
+*.compiled
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript
+*.tsbuildinfo
+
+# Flow
+.flow/
+
+# VS Code
+.vscode/
+
+# Editor directories
+.idea/
+*.suo
+*.ntvs*
+
+# Sublime Text
+.sublime-project
+.sublime-workspace
+
+# WebStorm
+.idea/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Visual Studio Code directories
+.vscode/
+.idea/
+
+# .NET Scaffolding
+ScaffoldingTemplates/
