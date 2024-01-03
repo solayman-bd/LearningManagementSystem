@@ -1,6 +1,6 @@
 require("dotenv").config();
 import { Request, Response, NextFunction } from "express";
-import UserModel from "../models/user.model";
+import UserModel, { IUser } from "../models/user.model";
 import ErrorHandler from "../utils/ErrorHandler";
 import { catchAsyncError } from "../middleware/catchAsyncErrors";
 import jwt, { Secret } from "jsonwebtoken";
@@ -46,7 +46,7 @@ export const registrationUser = catchAsyncError(
         });
         res.status(201).json({
           success: true,
-          message: `Please check your email ${user.email} to activate your account...`,
+          message: `Please check your email ${user.email} and if not found check spam folder to activate your account...`,
           activationToken: activationToken.token,
         });
       } catch (err: any) {
@@ -77,3 +77,41 @@ export const createActivationToken = (
   );
   return { token, activationCode };
 };
+
+interface IActivationRequest {
+  activationToken: string;
+  activationCode: string;
+}
+
+export const activateUser = catchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { activationToken, activationCode } =
+        req.body as IActivationRequest;
+
+      const newUser: { user: IUser; activationCode: string } = jwt.verify(
+        activationToken,
+        process.env.ACTIVATION_SECRET as string
+      ) as { user: IUser; activationCode: string };
+      if (newUser.activationCode!==activationCode) {
+        return next(new ErrorHandler("Invalid Activation Code!", 400));
+      }
+      const { name, email, password } = newUser.user;
+      const existUser = await UserModel.findOne({ email });
+      if (existUser) {
+        return next(new ErrorHandler("Email already exist...!", 400));
+      }
+      const user = await UserModel.create({
+        name,
+        email,
+        password,
+      });
+
+      res.status(201).json({
+        success:true
+      })
+    } catch (err: any) {
+      return next(new ErrorHandler(err.message, 400));
+    }
+  }
+);
